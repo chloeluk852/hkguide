@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/global.css">
+    <title>{{pinpoint["name"]}} | HK Guide</title>
+</head>
+<body style="padding: 20px;">
+    <div id="topbar">
+        {% if authenticated %}
+            <div class="topbar-button" onclick="window.location.href='/logout'"><box-icon name='log-out'></box-icon></div>
+            <div class="topbar-button"><img src="{{user.profile_pic}}" alt="Google profile pic" id="topbar-profile-pic"></img></div>
+        {% else %}
+            <div class="topbar-button" onclick="window.location.href='/login'"><box-icon name='user'></box-icon></div>
+        {% endif %}
+        <div class="separator"></div>
+        <div class="topbar-button" onclick="window.location.href='/'"><box-icon name='map-alt'></box-icon></div>
+    </div>
+    <h2>{{pinpoint["name"]}}</h2>
+    <p>{{pinpoint["description"]}}</p>
+    <!-- <iframe widthsrc="Page 1.html"></iframe> -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+</html>

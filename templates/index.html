@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v10.2.1/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css">
+    <link rel="stylesheet" href="/static/css/map.css">
+    <link rel="stylesheet" href="/static/css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>HKGUIDE - Explore Hong Kong</title>
+</head>
+<body class="map-page">
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo" onclick="window.location.href='/'">HKGUIDE</div>
+                <div class="subtitle">Discover Hong Kong's Hidden Gems</div>
+            </div>
+            <div id="topbar">
+                <div class="topbar-button" onclick="window.location.href='/howto'"><box-icon name='help-circle'></box-icon></div>
+                <div class="topbar-button" onclick="window.location.href='/about'"><box-icon name='info-circle'></box-icon></div>
+                {% if authenticated %}
+                    <div class="topbar-button" onclick="window.location.href='/logout'"><box-icon name='log-out'></box-icon></div>
+                    <div class="topbar-button"><img src="{{user.profile_pic}}" alt="Google profile pic" id="topbar-profile-pic"></img></div>
+                {% else %}
+                    <div class="topbar-button" onclick="window.location.href='/login'"><box-icon name='user'></box-icon></div>
+                {% endif %}
+                <div class="separator"></div>
+            </div>
+        </div>
+    </div>
+    <div id="map" class="map" tabindex="0"></div>
+    <div id="overlay">
+        <div id="mapbar">
+            <div class="topbar-button" onclick="centerLocation()"><box-icon name='current-location'></box-icon></div>
+        </div>
+        </div>
+        <div id="position">
+            <p id="position-pointer"></p>
+            <p id="position-zoom"></p>
+        </div>
+        <div id="pinpoint-overlay"></div>
+    </div>
+    <script src="/static/js/map.js"></script>
+    <p style="display: none;" id="data">{{pinpoints|tojson}}</p>
+    <script id="data-load">
+        loadPinpointData(document.getElementById('data').innerText);
+        document.getElementById('data').remove();
+        document.getElementById('data-load').remove();
+    </script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+</html>

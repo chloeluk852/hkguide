@@ -1,0 +1,2 @@
+Hello, these are the credentials for the google Oauth Login.
+Please DO NOT share them, and you don't need to look at them anyway.
